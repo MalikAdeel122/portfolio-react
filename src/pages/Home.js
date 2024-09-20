@@ -335,7 +335,7 @@ const Home = () => {
               {btn.map((btn) => (
                 <button
                   className={`btn_wave ${
-                    activeTap === btn.value ? "active" : ""
+                    activeTap === btn.value ? "active" : "All"
                   }`}
                   onClick={() => {
                     if (btn.value === "All") {
