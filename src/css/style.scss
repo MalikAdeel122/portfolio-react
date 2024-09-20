@@ -996,6 +996,9 @@ body {
           height: 45px;
           transition: all 0.3s linear;
           border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           @include media("<=sm") {
             width: 100%;
             font-size: 14px;
@@ -1007,9 +1010,7 @@ body {
           &:hover,
           &.active {
             background: var(--gradient-color-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
             color: var(--white-color);
           }
         }

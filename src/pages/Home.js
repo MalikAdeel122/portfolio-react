@@ -31,22 +31,6 @@ import {
 } from "react-icons/fa";
 import { Project } from "../Menu.js";
 const Home = () => {
-  const [openView, setOpenView] = useState(false);
-  // skill using state
-  const [skill, setSKill] = useState(false);
-  const [openFrontend, setOpenFrontend] = useState(false);
-  // console.log("skill", openFrontend);
-  // project state
-  const [activeTap, setActiveTap] = useState("All");
-  const [items, setItems] = useState(Project);
-  const filterItem = (categItem) => {
-    const updateData = Project.filter((curElem) => {
-      return curElem?.category === categItem;
-    });
-    setItems(updateData);
-    setActiveTap(categItem);
-  };
-
   const service = [
     {
       id: 1,
@@ -92,17 +76,32 @@ const Home = () => {
     },
     {
       label: "Web Apps",
-      value: "web apps",
+      value: "Web Apps",
     },
     {
       label: "Games",
-      value: "games",
+      value: "Games",
     },
     {
       label: "Designing",
-      value: "designing",
+      value: "Designing",
     },
   ];
+  const [openView, setOpenView] = useState(false);
+  // skill using state
+  const [skill, setSKill] = useState(false);
+  const [openFrontend, setOpenFrontend] = useState(false);
+  // console.log("skill", openFrontend);
+  // project state
+  const [items, setItems] = useState(Project);
+  const [activeTap, setActiveTap] = useState("All");
+  const filteritem = (categItem) => {
+    const updateData = Project.filter((curElem) => {
+      return curElem?.category === categItem;
+    });
+    setItems(updateData);
+    setActiveTap(categItem);
+  };
 
   return (
     <>
@@ -335,13 +334,14 @@ const Home = () => {
               {btn.map((btn) => (
                 <button
                   className={`btn_wave ${
-                    activeTap === btn.value ? "active" : "All"
+                    activeTap === btn.value ? "active" : ""
                   }`}
                   onClick={() => {
+                    setActiveTap(btn.value);
                     if (btn.value === "All") {
-                      setItems(Project);
+                      setItems(Project); // Show all projects
                     } else {
-                      filterItem(btn.value);
+                      filteritem(btn.value); // Filter projects
                     }
                   }}
                 >
@@ -352,9 +352,9 @@ const Home = () => {
           </div>
           <div className="container">
             <div className="wave">
-              {items.map((item) => (
-                <div className="project_card" key={item.id}>
-                  <img src={item.image}></img>
+              {items.map((item, index) => (
+                <div className="project_card" key={index}>
+                  <img src={item.image} alt={`Project ${index}`} />
                 </div>
               ))}
             </div>
